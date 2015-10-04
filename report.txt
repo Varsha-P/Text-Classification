@@ -1,0 +1,115 @@
+VARSHA PATTIPATI
+USC ID: 8244565758
+EMAIL: pattipat@usc.edu
+
+
+Naive Bayes:
+IMDB
+75% Training data, 25% Test data :
+POSITIVE - 0.88 (F1 score) - 0.919 (Precision) - 0.85(Recall)
+NEGATIVE - 0.89 (F1 score) - 0.863(Precision) - 0.93(Recall)
+
+25% Training data, 75% Test data:
+POSITIVE - 0.83 (F1 score) - 0.87(Precision) - 0.80(Recall)
+NEGATIVE - 0.84 (F1 score) - 0.82(Precision) - 0.87(Recall)
+
+
+SPAM DETECTION
+75% Training data, 25% Test data :
+SPAM - 0.98 (F1 score) - 0.98(Precision) - 0.98(Recall)
+HAM - 0.98 (F1 score) - 0.98(Precision) - 0.98(Recall)
+
+25% Training data, 75% Test data:
+SPAM - 0.98 (F1 score) - 0.985(Precision) - 0.976(Recall)
+HAM - 0.98 (F1 score) - 0.977(Precision) - 0.986(Recall)
+
+
+
+SVM_LIGHT:
+IMDB
+75% Training data, 25% Test data :
+POSITIVE - 0.92 (F1 score) - 0.85(Precision) - 1.0(Recall)
+NEGATIVE - 0.935 (F1 score) - 0.87(Precision) - 1.0(Recall)
+
+25% Training data, 75% Test data:
+POSITIVE - 0.90 (F1 score) - 0.83(Precision) - 1.0(Recall)
+NEGATIVE - 0.92 (F1 score) - 0.85(Precision) - 1.0(Recall)
+
+
+SPAM DETECTION
+75% Training data, 25% Test data :
+SPAM - 0.96 (F1 score) - 0.926(Precision) - 1.0(Recall)
+HAM - 0.995 (F1 score) - 0.99(Precision) - 1.0(Recall)
+
+25% Training data, 75% Test data:
+SPAM - 0.95 (F1 score) - 0.905(Precision) - 1.0(Recall)
+HAM - 0.996 (F1 score) - 0.99(Precision) - 1.0(Recall)
+
+
+
+MegaM:
+IMDB
+75% Training data, 25% Test data :
+POSITIVE - 0.935 (F1 score) - 0.879(Precision) - 1.0(Recall)
+NEGATIVE - 0.935 (F1 score) - 0.878(Precision) - 1.0(Recall)
+
+25% Training data, 75% Test data:
+POSITIVE - 0.919 (F1 score) - 0.85(Precision) - 1.0(Recall)
+NEGATIVE - 0.922 (F1 score) - 0.855(Precision) - 1.0(Recall)
+
+
+SPAM DETECTION
+75% Training data, 25% Test data :
+SPAM - 0.83 (F1 score) - 0.71(Precision) - 1.0(Recall)
+HAM - 0.789 (F1 score) - 0.65(Precision) - 1.0(Recall)
+
+25% Training data, 75% Test data:
+SPAM - 0.979 (F1 score) - 0.959(Precision) - 1.0(Recall)
+HAM - 0.99 (F1 score) - 0.987(Precision) - 1.0(Recall)
+
+Answering question1, in general SPAM detection achieves better performance using all techniques when compared to Sentiment analysis.
+Also, MegaM achieves better performance in Sentiment analysis when 75% of data is used for training and 25% of data is used for testing
+Even when data is split as 25% for training and 75% for testing MegaM performs better in case of Sentiment Analysis.
+Considering SPAM detection, Naive Bayes performs better when data is split 75% for training and 25% for testing as well as for the 25% train and 75% test data.
+Based on my results I would say that it is relatively easier to detect SPAM using simple machine learning techniques because I just used simple Naive-Bayes with add-one smoothing but with no other feature extractions like removing stop words, assigning higher probabilities based on a database of words etc., and it still performs good on the test set.
+
+Relative performance of the machine learing techniques decreases when training data is reduced to 25% and the only exception is MegaM in case of SPAM detection. THe decrease could be due to less number of training examples and may be the model encountered a lot of unseen examples while testing.
+Answering question2, based on the F1 scores of MegaM, may be this particular machine learning technique performs better with a smaller tarining set. May be a smaller data set lets it generalize the answers.  It could be that a larger training set overfits data and hence the decrease in performance when tested on a test set.
+
+EXECUTIONS:
+1.) The main files are nblearn.py and nbclassify.py
+2.) nbclassifyTest.py is used to measure the F1 scores and precision/recall for Naive Bayes
+    It runs just like how nbclassify.py runs ie., python3 nbclassifytest.py MODELFILE TESTFILE
+3.) preprocessIMDB.py preprocesses IMDB data.
+    Execution: python3 preprocessIMDB.py input_file output_file percent
+    percent is 75 or 25
+4.) preprocessMAIL.py preprocesses Spam data from the folders. 
+    Execution: python3 preprocessMAIL.py output_file percent
+5.) preprocessIMDBforSVM.py preprocesses IMDB data to the SVM data format
+    Execution: python3 preprocessIMDBforSVM.py input_file output_file percent
+6.) preprocessMAILforSVM.py preprocesses SPAM data to the SVM data format 
+    EXecution: python3 preprocessMAILforSVM.py input_file output_file percent
+7.) preprocessIMDBforMegaM.py preprocesses IMDB data to the MegaM data format 
+    Execution: python3 preprocessIMDBforMegaM.py
+8.) preprocessMAILforMegaM.py preprocesses SPAM data to the MegaM data format
+    Execution: python3 preprocessMAILforMegaM.py
+9.) processTestDataNbIMDB.py preprocesses testBow.feat file to the format that nblearn.py accepts
+    Execution: python3 processTestDataNbIMDB.py input_file output_file
+10.) processTestDataNbMAIL.py preprocesses test data provided for SPAM detection to the format that nblearn.py accepts
+    Execution: python3 processTestDataNbMAIL.py input_file output_file
+11.) megamF1scoreCalculation.py calculates F1 score, precision, recall for MegaM output
+    Execution: python3 megamF1scoreCalculation.py
+12.) svmclassifyTest.py calculates F1 score, precision, recall for SVM output
+    Execution: python3 svmclassifytest.py actual_file predicted_file
+13.) splitData.py splits data 75/25 or 25/75 for MegaM execution
+    Execution: python3 splitData.py
+14.) processTestFileSVM.py processes both SPAM test file and IMDB test file received from processTestDataIMDB/MAIL.py to SVM input format
+    Execution: python3 processTestDileSVM input_file output_filee
+15.) preprocessTestForImdbMegaM.py preprocesses IMDB test data into MegaM input format
+    Execution: python3 preprocessTestForImdbMegaM.py
+16.) preprocessTestMAILforMegaM.py preprocesses SPAM test data into MegaM input format
+    Execution: python3 preprocessTestMAILforMegaM.py
+17.) postprocessMegaM.py processes output of MegaM to give a file that has predicted labels
+    Execution: python3 postprocessMegaM.py SENTIMENT/MAIL input_file 
+18.) postprocessSVMoutput.py processes output of SVM to give a file that has predicted labels 
+    Execution: python3 postprocessSVMoutput.py input_file SENTIMENT/MAIL
